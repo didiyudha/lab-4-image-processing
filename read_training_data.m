@@ -1,6 +1,6 @@
 function [Q] = read_training_data(path, number_of_data, dim_resize)
-    rows = dim_resize(1) * dim_resize(2);
-    Q = zeros(rows, number_of_data);
+    cols = dim_resize(1) * dim_resize(2);
+    Q = zeros(number_of_data, cols);
     dirpath = strcat(path, '*.jpg');
     flowersDir = dir(dirpath);
     nFiles = length(flowersDir);
@@ -12,7 +12,7 @@ function [Q] = read_training_data(path, number_of_data, dim_resize)
         IHisteq = histeq(IGray);
         IResize = imresize(IHisteq, dim_resize);
         oneColImage = IResize(:);
-        Q(:,i) = oneColImage;
+        Q(i, :) = oneColImage';
     end
     
 end
