@@ -41,4 +41,4 @@ for i = col:-1:1
 end
 
 PCA = vrow * Q';
-PC = PCA * Q';
+PC = Q * PCA;
