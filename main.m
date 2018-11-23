@@ -1,5 +1,5 @@
-% clear;
-% clc;
+clear;
+clc;
 
 addpath('./PCA/')
 
@@ -25,4 +25,20 @@ Q(11:20, :) = QDandelion;
 Q(21:30, :) = QDaisy;
 
 %% Find PCA matrix
-PCA = pca(Q);
+ CovQ = cov(Q);
+
+% Find eigen vector and eigen value.
+[eigenVector, eigenValue] = eig(CovQ);
+
+% Sort eigen vector based on eigen value by descending order.
+[row, col] = size(eigenVector);
+vrow = zeros(row, col);
+idx_vrow = 1;
+
+for i = col:-1:1
+    vrow(idx_vrow, :) = eigenVector(:, i)';
+    idx_vrow = idx_vrow + 1;
+end
+
+PCA = vrow * Q';
+PC = PCA * Q';

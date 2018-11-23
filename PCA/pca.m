@@ -25,4 +25,3 @@ function [PCA] = pca(Q)
     PCA = vrow * Q';
 
 end
-
