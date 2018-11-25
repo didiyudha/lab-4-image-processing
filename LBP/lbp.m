@@ -3,6 +3,7 @@ function [lbpFeatures] = lbp(trainingPath, featureLen, dimResize)
     flowerDir = dir(flowerPath);
     nFlowerFiles = length(flowerDir);
     lbpFeatures = zeros(nFlowerFiles, featureLen);
+    
     for i = 1:nFlowerFiles
         currentFileImage = flowerDir(i).name;
         currentImage = imread(strcat(trainingPath, currentFileImage));

@@ -1,7 +1,17 @@
-function [outputArg1,outputArg2] = surf(inputArg1,inputArg2)
-%SURF Summary of this function goes here
-%   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+function [surfMetric] = surf(trainingPath, dimResize)
+    flowerPath = strcat(trainingPath, '*.jpg');
+    flowerDir = dir(flowerPath);
+    nFlowerFiles = length(flowerDir);
+    surfMetric = [];
+    
+    for i = 1 : nFlowerFiles
+       currentFileImage = flowerDir(i).name;
+       currentImage = imread(strcat(trainingPath, currentFileImage));
+       IResize = imresize(currentImage, dimResize);
+       I_GRAY = rgb2gray(IResize); 
+       features = detectSURFFeatures(I_GRAY);
+       m = features.Metric';
+       surfMetric(1, :) = m;
+    end
 end
 

@@ -1,17 +1,17 @@
 clc;
 clear;
 
-addpath('./LBP/')
+addpath('./SURF/')
 SunFlowerTrainingPath = 'Train/Sunflower/';
 DandelionTrainingPath = 'Train/Dandelion/';
 DaisyTrainingPath = 'Train/Daisy/';
 dimResize = [100 100];
 
-
-I = imread(strcat(SunFlowerTrainingPath, 'train_sunflower_9.jpg'));
-IResize = imresize(I, dimResize);
-IGray = rgb2gray(IResize);
-features = detectSURFFeatures(IGray);
-
-imshow(IResize); hold on;
-plot(features.selectStrongest(40));
+sunFlowerSURFfeature = surf(SunFlowerTrainingPath, dimResize);
+% surfMetric(1:10, :) = sunFlowerSURFfeature;
+% 
+% dandelionSURFfeature = surf(DandelionTrainingPath, dimResize);
+% surfMetric(11:20, :) = dandelionSURFfeature';
+% 
+% daisySURFfeature = surf(DaisyTrainingPath, dimResize);
+% surfMetric(21:30, :) = daisySURFfeature;
